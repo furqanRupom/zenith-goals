@@ -37,31 +37,77 @@
  py -m pip install -U pip
 ```
 
-
 <br>
 <br>
-
 
 ## start project
 
 - create django project
 
-
 ```bash
  django-admin startproject myproject
 ```
 
-
 - move to project directory
-
 
 ```bash
  cd myproject
 ```
 
-
--  run the server
+- run the server
 
 ```bash
  py manage.py runserver 8080
+```
+
+# Add static templates
+
+## For this you have to do two things
+
+
+
+###  add this templates location -
+
+```python
+
+'DIRS': ['templates'],
+
+```
+
+```python
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    }
+]
+```
+
+
+
+### add static variables like that -
+
+
+```python
+
+# we include this static variable
+
+STATIC_URL = 'static/'
+
+# we also add this one as well
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+
 ```
