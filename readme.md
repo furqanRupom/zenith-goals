@@ -111,3 +111,31 @@ STATICFILES_DIRS = [
 ]
 
 ```
+
+
+
+# Create new app
+
+```bash
+ py manage.py startapp
+```
+
+
+
+## Define app name in top level folder >  settings.py
+
+```python
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'posts'
+]
+
+```
