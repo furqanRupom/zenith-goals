@@ -64,9 +64,7 @@
 
 ## For this you have to do two things
 
-
-
-###  add this templates location -
+### add this templates location -
 
 ```python
 
@@ -93,10 +91,7 @@ TEMPLATES = [
 ]
 ```
 
-
-
 ### add static variables like that -
-
 
 ```python
 
@@ -112,19 +107,15 @@ STATICFILES_DIRS = [
 
 ```
 
-
-
 # Create new app
 
 ```bash
  py manage.py startapp
 ```
 
+## Define app name in top level folder > settings.py
 
-
-## Define app name in top level folder >  settings.py
-
-```python
+```py
 
 # Application definition
 
@@ -138,4 +129,80 @@ INSTALLED_APPS = [
     'posts'
 ]
 
+```
+
+# you can add layout like that
+
+```html
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} zenithGoals {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/main.js' %}" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">about</a>
+      <a href="/posts">posts</a>
+    </nav>
+
+    <main>{% block content%} {% endblock %}</main>
+  </body>
+</html>
+```
+
+- then you can use it with extends property
+
+```html
+{% extends "layout.html" %} {% block title %} posts {% endblock %} {% comment %}
+content here {% endcomment %} {% block content %}
+<h1>Posts</h1>
+
+{% endblock %}
+```
+
+# Define a database models in django
+
+- First go to the inside of models file
+
+- then write your necessary model like that
+
+```py
+
+from django.db import models
+
+# Create your models here.
+
+class Post(models.Model) :
+  title = models.CharField(min_length = 5, max_length=255)
+  description = models.TextField()
+  slug = models.SlugField()
+  date = models.DateField(auto_now=True)
+
+```
+
+# for migrations you can use this command -
+
+```bash
+py mange.py migrate
+
+```
+
+### for new models you have to make migrations first then you can apply any migration
+
+```bash
+py manage.py makemigrations
+
+```
+
+- response
+
+```bash
+  posts\migrations\0001_initial.py
+    - Create model Post
 ```
