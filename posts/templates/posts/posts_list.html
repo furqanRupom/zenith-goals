@@ -1,14 +1,18 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} posts {% endblock %} {% comment %}
+content here {% endcomment %} {% block content %}
+<h1>Posts</h1>
 
+<section>
+  <h1>Every day human like post</h1>
+  {% for post in posts %}
+  <article >
+    <h2>Title : {{post.title}}</h2>
+    <small> {{post.date}}</small>
+    <p>Description : {{post.description}}</p>
+    <p>{{post.slug}}</p>
+  </article>
 
-{% block title %}
-posts
-{% endblock %}
-
-
-{% comment %} content here   {% endcomment %}
-
-{% block content %}
-  <h1>Posts</h1>
+  {% endfor %}
+</section>
 
 {% endblock %}

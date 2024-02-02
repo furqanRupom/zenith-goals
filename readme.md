@@ -206,3 +206,46 @@ py manage.py makemigrations
   posts\migrations\0001_initial.py
     - Create model Post
 ```
+
+
+## REST API And Django Admin panel
+
+
+- create a super user
+
+```bash
+
+py manage.py createsuperuser
+
+```
+
+- than go localhost/admin path and login 
+
+
+- get all the posts
+
+* first register a model  app folder > admin.py
+
+```py
+
+from .models import post
+
+admin.site.register(post)
+
+# add more ...
+
+```
+
+
+* GET query - go the views.py file
+
+
+```py
+from .models import post
+def post(request):
+  post = post.objects.all().order_by('-date') ## for desc order
+  return render(request,'posts/posts_list.html')
+
+```
+
+
