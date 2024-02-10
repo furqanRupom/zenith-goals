@@ -245,7 +245,6 @@ from .models import post
 def post(request):
   post = post.objects.all().order_by('-date') ## for desc order
   return render(request,'posts/posts_list.html')
-
 ```
 
 
